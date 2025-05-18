@@ -1,11 +1,11 @@
-# Panduan Setup Project
+# Panduan Setup Project materi-bimbingan-karir-wd
 
-Panduan ini akan membantu Anda melakukan setup project Laravel yang di-clone dari GitHub dengan benar dan efisien.
+Panduan ini akan membantu Anda melakukan setup project materi-bimbingan-karir-wd yang di-clone dari repository dengan benar dan efisien.
 
 ## Prasyarat
 
 -   Git terinstall di komputer Anda
--   PHP (versi yang sesuai dengan requirement Laravel project)
+-   PHP (versi yang sesuai dengan requirement materi-bimbingan-karir-wd project)
 -   Composer terinstall
 -   Node.js & NPM (jika project menggunakan frontend assets)
 -   Database (MySQL)
