@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
             {{ __('Janji Periksa') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+        <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
+            <div class="p-4 bg-white shadow-sm sm:p-8 sm:rounded-lg">
                 <div class="max-w-xl">
                     <section>
                         <header>
@@ -24,7 +24,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="formGroupExampleInput">Nomor Rekam Medis</label>
-                                <input type="text" class="form-control rounded" id="formGroupExampleInput"
+                                <input type="text" class="rounded form-control" id="formGroupExampleInput"
                                     placeholder="Example input" value="{{ $no_rm }}" readonly>
                             </div>
                             <div class="form-group">
@@ -60,7 +60,7 @@
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            <div class="p-4 bg-white shadow sm-sm:p-8 sm:rounded-lg">
                 <section>
                     <header>
                         <h2 class="text-lg font-medium text-gray-900">
@@ -69,7 +69,7 @@
                     </header>
 
                     {{-- Table --}}
-                    <table class="table table-hover rounded overflow-hidden mt-6">
+                    <table class="table mt-6 overflow-hidden rounded table-hover">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">No</th>
@@ -109,11 +109,11 @@
                                     <td class="align-middle text-start">
                                         @if (is_null($janjiPeriksa->periksa))
                                             <button type="submit" class="btn btn-info" data-toggle="modal"
-                                                data-target="#detailModal">Detail</button>
+                                                data-target="#detailModal{{ $janjiPeriksa->id }}">Detail</button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade bd-example-modal-lg" id="detailModal" tabindex="-1"
-                                                role="dialog" aria-labelledby="detailModalTitle" aria-hidden="true">
+                                            <div class="modal fade bd-example-modal-lg" id="detailModal{{ $janjiPeriksa->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="detailModalTitle{{ $janjiPeriksa->id }}" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg modal-dialog-centered"
                                                     role="document">
                                                     <div class="modal-content">
@@ -121,7 +121,7 @@
                                                         <!-- Modal Header -->
                                                         <div class="modal-header">
                                                             <h5 class="modal-title font-weight-bold"
-                                                                id="riwayatModalLabel">
+                                                                id="riwayatModalLabel{{ $janjiPeriksa->id }}">
                                                                 Detail Riwayat Pemeriksaan
                                                             </h5>
                                                             <button type="button" class="close" data-dismiss="modal"
@@ -157,7 +157,7 @@
 
                                                             <!-- Highlight Nomor Antrian -->
                                                             <div class="mt-4 text-center">
-                                                                <div class="h5 mb-2 font-weight-bold">Nomor Antrian Anda
+                                                                <div class="mb-2 h5 font-weight-bold">Nomor Antrian Anda
                                                                 </div>
                                                                 <span class="badge badge-primary"
                                                                     style="font-size: 1.75rem; padding: 0.6em 1.2em;">
@@ -179,15 +179,15 @@
                                             </div>
                                         @else
                                             <button type="submit" class="btn btn-secondary" data-toggle="modal"
-                                                data-target="#modalRiwayatPeriksa">Riwayat</button>
+                                                data-target="#modalRiwayatPeriksa{{ $janjiPeriksa->id }}">Riwayat</button>
 
-                                            <div class="modal fade" id="modalRiwayatPeriksa" tabindex="-1"
-                                                aria-labelledby="modalRiwayatPeriksaLabel" aria-hidden="true">
+                                            <div class="modal fade" id="modalRiwayatPeriksa{{ $janjiPeriksa->id }}" tabindex="-1"
+                                                aria-labelledby="modalRiwayatPeriksaLabel{{ $janjiPeriksa->id }}" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title font-weight-bold"
-                                                                id="modalRiwayatPeriksaLabel">
+                                                                id="modalRiwayatPeriksaLabel{{ $janjiPeriksa->id }}">
                                                                 Riwayat Pemeriksaan</h5>
                                                             <button type="button" class="close"
                                                                 data-dismiss="modal" aria-label="Close">
@@ -195,7 +195,7 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <ul class="list-group mb-3">
+                                                            <ul class="mb-3 list-group">
                                                                 <li class="list-group-item"><strong>Tanggal
                                                                         Periksa:</strong>
                                                                     {{ \Carbon\Carbon::parse($janjiPeriksa->periksa->tgl_periksa)->translatedFormat('d F Y H.i') }}
@@ -204,9 +204,9 @@
                                                                     {{ $janjiPeriksa->periksa->catatan }}</li>
                                                             </ul>
 
-                                                            <h6 class="font-weight-bold mb-3">Daftar Obat Diresepkan:
+                                                            <h6 class="mb-3 font-weight-bold">Daftar Obat Diresepkan:
                                                             </h6>
-                                                            <ul class="list-group mb-3">
+                                                            <ul class="mb-3 list-group">
                                                                 @foreach ($janjiPeriksa->periksa->detailPeriksas as $detailPeriksa)
                                                                     <li class="list-group-item">
                                                                         {{ $detailPeriksa->obat->nama_obat }}
