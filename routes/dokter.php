@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dokter\JadwalPeriksaController;
+use App\Http\Controllers\Dokter\MemeriksaController;
 use App\Http\Controllers\Dokter\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +20,11 @@ Route::middleware(['auth', 'role:dokter'])->prefix('dokter')->group(function () 
         Route::get('/', [JadwalPeriksaController::class, 'index'])->name('dokter.jadwal-periksa.index');
         Route::post('/', [JadwalPeriksaController::class, 'store'])->name('dokter.jadwal-periksa.store');
         Route::patch('/{id}', [JadwalPeriksaController::class, 'update'])->name('dokter.jadwal-periksa.update');
+    });
+
+    Route::prefix('memeriksa')->group(function(){
+        Route::get('/', [MemeriksaController::class, 'index'])->name('dokter.memeriksa.index');
+        Route::post('/{id}', [MemeriksaController::class, 'store'])->name('dokter.memeriksa.store');
+        Route::patch('/{id}', [MemeriksaController::class, 'update'])->name('dokter.memeriksa.update');
     });
 });
