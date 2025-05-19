@@ -9,8 +9,6 @@ Route::middleware(['auth', 'role:pasien'])->prefix('pasien')->group(function () 
         return view('pasien.dashboard');
     })->name('pasien.dashboard');
 
-    Route::get('/get-jadwal/{dokter_id}', [JadwalController::class, 'getByDokter']);
-
     Route::prefix('profile')->group(function (){
         Route::get('/', [ProfileController::class, 'edit'])->name('pasien.profile.edit');
         Route::patch('/', [ProfileController::class, 'update'])->name('pasien.profile.update');
