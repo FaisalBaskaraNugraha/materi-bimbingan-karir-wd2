@@ -28,6 +28,9 @@
                         <x-nav-link :href="route('dokter.memeriksa.index')" :active="request()->routeIs('dokter.memeriksa.index')">
                             {{ __('Memeriksa') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('dokter.obat.index')" :active="request()->routeIs('dokter.obat.index')">
+                            {{ __('Obat') }}
+                        </x-nav-link>
                         {{-- <x-nav-link :href="route('dokter.pasien')" :active="request()->routeIs('dokter.pasien')">
                             {{ __('Daftar Pasien') }}
                         </x-nav-link> --}}
@@ -122,6 +125,9 @@
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('dokter.memeriksa.index')" :active="request()->routeIs('dokter.memeriksa.index')">
                     {{ __('Memeriksa') }}
+                    <x-responsive-nav-link :href="route('dokter.obat.index')" :active="request()->routeIs('dokter.obat.index')">
+                        {{ __('Obat') }}
+                    </x-responsive-nav-link>
                 </x-responsive-nav-link>
                 {{-- <x-responsive-nav-link :href="route('dokter.jadwal')" :active="request()->routeIs('dokter.jadwal')">
                     {{ __('Jadwal Periksa') }}
