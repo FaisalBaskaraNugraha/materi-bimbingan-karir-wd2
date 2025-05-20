@@ -16,7 +16,6 @@ class JanjiPeriksaController extends Controller
     public function index()
     {
         $no_rm = Auth::user()->no_rm;
-        $janjiPeriksas = JanjiPeriksa::where('id_pasien', Auth::user()->id)->get();
         $dokters = User::with([
             'jadwalPeriksas' => function ($query) {
                 $query->where('status', true);
@@ -28,7 +27,6 @@ class JanjiPeriksaController extends Controller
         return view('pasien.janji-periksa.index')->with([
             'no_rm' => $no_rm,
             'dokters' => $dokters,
-            'janjiPeriksas' => $janjiPeriksas,
         ]);
     }
 

@@ -19,6 +19,11 @@ class JadwalPeriksaController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return view('dokter.jadwal-periksa.create');
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -33,7 +38,7 @@ class JadwalPeriksaController extends Controller
             ->where('jam_mulai', $request->jam_mulai)
             ->where('jam_selesai', $request->jam_selesai)
             ->exists()) {
-            return redirect()->back()->with('status', 'jadwal-periksa-exists');
+            return redirect()->route('dokter.jadwal-periksa.index')->with('status', 'jadwal-periksa-exists');
         }
 
         JadwalPeriksa::create([
@@ -44,7 +49,7 @@ class JadwalPeriksaController extends Controller
             'status' => false,
         ]);
 
-        return redirect()->back()->with('status', 'jadwal-periksa-created');
+        return redirect()->route('dokter.jadwal-periksa.index')->with('status', 'jadwal-periksa-created');
     }
 
     public function update($id)

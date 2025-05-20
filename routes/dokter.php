@@ -19,6 +19,7 @@ Route::middleware(['auth', 'role:dokter'])->prefix('dokter')->group(function () 
 
     Route::prefix('jadwal-periksa')->group(function(){
         Route::get('/', [JadwalPeriksaController::class, 'index'])->name('dokter.jadwal-periksa.index');
+        Route::get('/create', [JadwalPeriksaController::class, 'create'])->name('dokter.jadwal-periksa.create');
         Route::post('/', [JadwalPeriksaController::class, 'store'])->name('dokter.jadwal-periksa.store');
         Route::patch('/{id}', [JadwalPeriksaController::class, 'update'])->name('dokter.jadwal-periksa.update');
     });
@@ -26,12 +27,16 @@ Route::middleware(['auth', 'role:dokter'])->prefix('dokter')->group(function () 
     Route::prefix('memeriksa')->group(function(){
         Route::get('/', [MemeriksaController::class, 'index'])->name('dokter.memeriksa.index');
         Route::post('/{id}', [MemeriksaController::class, 'store'])->name('dokter.memeriksa.store');
+        Route::get('/{id}/periksa', [MemeriksaController::class, 'periksa'])->name('dokter.memeriksa.periksa');
+        Route::get('/{id}/edit', [MemeriksaController::class, 'edit'])->name('dokter.memeriksa.edit');
         Route::patch('/{id}', [MemeriksaController::class, 'update'])->name('dokter.memeriksa.update');
     });
 
     Route::prefix('obat')->group(function(){
         Route::get('/', [ObatController::class, 'index'])->name('dokter.obat.index');
+        Route::get('/create', [ObatController::class, 'create'])->name('dokter.obat.create');
         Route::post('/', [ObatController::class, 'store'])->name('dokter.obat.store');
+        Route::get('/{id}/edit', [ObatController::class, 'edit'])->name('dokter.obat.edit');
         Route::patch('/{id}', [ObatController::class, 'update'])->name('dokter.obat.update');
         Route::delete('/{id}', [ObatController::class, 'destroy'])->name('dokter.obat.destroy');
     });

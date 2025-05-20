@@ -14,66 +14,12 @@
                     </h2>
 
                     <div class="flex-col items-center justify-center text-center">
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#createObatModal">Tambah Obat</button>
+                        <a href="{{route('dokter.obat.create')}}" class="btn btn-primary">Tambah Obat</a>
 
                         @if (session('status') === 'obat-created')
                             <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
                                 class="text-sm text-gray-600">{{ __('Created.') }}</p>
                         @endif
-                    </div>
-
-                    {{-- Modal --}}
-                    <div class="modal fade bd-example-modal-lg" id="createObatModal" tabindex="-1" role="dialog"
-                        aria-labelledby="detailModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                            <div class="modal-content">
-
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h5 class="modal-title font-weight-bold" id="riwayatModalLabel">
-                                        Tambah Obat
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-
-                                <!-- Modal Body -->
-                                <div class="modal-body">
-                                    <form id="formObat" action="{{ route('dokter.obat.store') }}" method="POST">
-                                        @csrf
-
-                                        <div class="mb-3 form-group">
-                                            <label for="namaObat">Nama Obat</label>
-                                            <input type="text" class="rounded form-control" id="namaObat"
-                                                name="nama_obat">
-                                        </div>
-                                        <div class="mb-3 form-group">
-                                            <label for="kemasan">Kemasan</label>
-                                            <input type="text" class="rounded form-control" id="kemasan"
-                                                name="kemasan">
-                                        </div>
-                                        <div class="mb-3 form-group">
-                                            <label for="harga">Harga</label>
-                                            <input type="text" class="rounded form-control" id="harga"
-                                                name="harga">
-                                        </div>
-                                    </form>
-                                </div>
-
-                                <!-- Modal Footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                        Tutup
-                                    </button>
-                                    <button type="button" class="btn btn-primary"
-                                        onclick="document.getElementById('formObat').submit();" data-dismiss="modal">
-                                        Simpans
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </header>
 
@@ -96,78 +42,9 @@
                                 <td class="align-middle text-start">
                                     {{ 'Rp' . number_format($obat->harga, 0, ',', '.') }}
                                 </td>
-                                <td class="flex gap-3 align-middle text-start">
+                                <td class="flex items-center gap-3">
                                     {{-- Button Edit --}}
-                                    <button type="submit" class="btn btn-secondary btn-sm" data-toggle="modal"
-                                        data-target="#editObatModal{{ $obat->id }}">Edit</button>
-
-                                    {{-- Modal Edit --}}
-                                    <div class="modal fade bd-example-modal-lg" id="editObatModal{{ $obat->id }}"
-                                        tabindex="-1" role="dialog"
-                                        aria-labelledby="editModalTitle{{ $obat->id }}" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-
-                                                <!-- Modal Header -->
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title font-weight-bold"
-                                                        id="editModalLabel{{ $obat->id }}">
-                                                        Edit Data Obat
-                                                    </h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-
-                                                <!-- Modal Body -->
-                                                <div class="modal-body">
-                                                    <form id="formEdit{{ $obat->id }}"
-                                                        action="{{ route('dokter.obat.update', $obat->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('PATCH')
-
-                                                        <div class="mb-3 form-group">
-                                                            <label
-                                                                for="editNamaObatInput{{ $obat->id }}">Nama</label>
-                                                            <input type="text" class="rounded form-control"
-                                                                id="editNamaObatInput{{ $obat->id }}"
-                                                                value="{{ $obat->nama_obat }}" name="nama_obat">
-                                                        </div>
-
-                                                        <div class="mb-3 form-group">
-                                                            <label
-                                                                for="editKemasanInput{{ $obat->id }}">Kemasan</label>
-                                                            <input type="text" class="rounded form-control"
-                                                                id="editKemasanInput{{ $obat->id }}"
-                                                                value="{{ $obat->kemasan }}" name="kemasan">
-                                                        </div>
-
-                                                        <div class="mb-3 form-group">
-                                                            <label
-                                                                for="editHargaInput{{ $obat->id }}">Harga</label>
-                                                            <input type="text" class="rounded form-control"
-                                                                id="editHargaInput{{ $obat->id }}"
-                                                                value="{{ $obat->harga }}" name="harga">
-                                                        </div>
-                                                    </form>
-                                                </div>
-
-                                                <!-- Modal Footer -->
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-dismiss="modal">
-                                                        Tutup
-                                                    </button>
-                                                    <button type="button" class="btn btn-primary"
-                                                        onclick="document.getElementById('formEdit{{ $obat->id }}').submit();">
-                                                        Update
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <a href="{{route('dokter.obat.edit', $obat->id)}}" class="btn btn-secondary btn-sm">Edit</a>
 
                                     {{-- Button Delete --}}
                                     <form action="{{ route('dokter.obat.destroy', $obat->id) }}" method="POST">
@@ -180,7 +57,6 @@
                         @endforeach
                     </tbody>
                 </table>
-                </section>
             </div>
         </div>
 </x-app-layout>
