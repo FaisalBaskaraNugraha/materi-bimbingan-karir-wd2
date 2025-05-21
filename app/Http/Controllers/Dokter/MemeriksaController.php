@@ -31,6 +31,27 @@ class MemeriksaController extends Controller
         ]);
     }
 
+    public function edit($id){
+        $janjiPeriksa = JanjiPeriksa::findOrFail($id);
+        $obats = Obat::all();
+
+        return view('dokter.memeriksa.edit')->with([
+            'janjiPeriksa' => $janjiPeriksa,
+            'obats' => $obats,
+        ]);
+    }
+
+    public function periksa($id)
+    {
+        $janjiPeriksa = JanjiPeriksa::findOrFail($id);
+        $obats = Obat::all();
+
+        return view('dokter.memeriksa.periksa')->with([
+            'janjiPeriksa' => $janjiPeriksa,
+            'obats' => $obats,
+        ]);
+    }
+
     public function store(Request $request, $id)
     {
         $request->validate([

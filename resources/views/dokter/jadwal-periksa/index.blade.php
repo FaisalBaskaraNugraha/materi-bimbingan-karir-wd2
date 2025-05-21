@@ -14,9 +14,9 @@
                     </h2>
 
                     <div class="flex-col items-center justify-center text-center">
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#createJadwalModal">Tambah
-                            Jadwal Periksa</button>
+                        <a type="button" class="btn btn-primary"
+                            href="{{ route('dokter.jadwal-periksa.create') }}">Tambah
+                            Jadwal Periksa</a>
 
                         @if (session('status') === 'jadwal-periksa-created')
                             <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
@@ -26,70 +26,6 @@
                             <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
                                 class="text-sm text-gray-600">{{ __('Exists.') }}</p>
                         @endif
-                    </div>
-
-                    {{-- Modal --}}
-                    <div class="modal fade bd-example-modal-lg" id="createJadwalModal" tabindex="-1" role="dialog"
-                        aria-labelledby="detailModalTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                            <div class="modal-content">
-
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h5 class="modal-title font-weight-bold" id="riwayatModalLabel">
-                                        Tambah Jadwal Periksa
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-
-                                <!-- Modal Body -->
-                                <div class="modal-body">
-                                    <form id="formJadwal" action="{{ route('dokter.jadwal-periksa.store') }}"
-                                        method="POST">
-                                        @csrf
-
-                                        <div class="mb-3 form-group">
-                                            <label for="hariSelect">Hari</label>
-                                            <select class="form-control" name="hari" id="hariSelect" required>
-                                                <option value="">Pilih Hari</option>
-                                                <option>Senin</option>
-                                                <option>Selasa</option>
-                                                <option>Rabu</option>
-                                                <option>Kamis</option>
-                                                <option>Jumat</option>
-                                                <option>Sabtu</option>
-                                                <option>Minggu</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="mb-3 form-group">
-                                            <label for="jamMulai">Jam Mulai</label>
-                                            <input type="time" class="form-control" id="jamMulai" name="jam_mulai"
-                                                required>
-                                        </div>
-
-                                        <div class="mb-4 form-group">
-                                            <label for="jamSelesai">Jam Selesai</label>
-                                            <input type="time" class="form-control" id="jamSelesai"
-                                                name="jam_selesai" required>
-                                        </div>
-                                    </form>
-                                </div>
-
-                                <!-- Modal Footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                        Tutup
-                                    </button>
-                                    <button type="button" class="btn btn-primary"
-                                        onclick="document.getElementById('formJadwal').submit();" data-dismiss="modal">
-                                        Simpan
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </header>
 
