@@ -16,12 +16,12 @@
                             </h2>
 
                             <p class="mt-1 text-sm text-gray-600">
-                                {{ __('Silakan isi form di bawah ini untuk menambahkan jadwal pemeriksaan dokter sesuai dengan hari dan waktu yang tersedia.') }}
+                                {{ __('Silakan perbarui data pemeriksaan pasien sesuai dengan hasil diagnosis dan obat yang diberikan.') }}
                             </p>
                         </header>
 
-                        <form class="mt-6" id="formEdit" action="{{ route('dokter.memeriksa.update', $janjiPeriksa->periksa->id) }}"
-                            method="POST">
+                        <form class="mt-6" id="formEdit"
+                            action="{{ route('dokter.memeriksa.update', $janjiPeriksa->periksa->id) }}" method="POST">
                             @csrf
                             @method('PATCH')
 

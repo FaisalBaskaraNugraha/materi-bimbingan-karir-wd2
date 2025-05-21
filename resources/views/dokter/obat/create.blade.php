@@ -16,8 +16,9 @@
                             </h2>
 
                             <p class="mt-1 text-sm text-gray-600">
-                                {{ __('Silakan isi form di bawah ini untuk menambahkan jadwal pemeriksaan dokter sesuai dengan hari dan waktu yang tersedia.') }}
+                                {{ __('Silakan isi form di bawah ini untuk menambahkan data obat ke dalam sistem.') }}
                             </p>
+
                         </header>
 
                         <form class="mt-6" id="formObat" action="{{ route('dokter.obat.store') }}" method="POST">

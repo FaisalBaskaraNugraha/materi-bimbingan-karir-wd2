@@ -16,7 +16,7 @@
                             </h2>
 
                             <p class="mt-1 text-sm text-gray-600">
-                                {{ __('Silakan isi form di bawah ini untuk menambahkan jadwal pemeriksaan dokter sesuai dengan hari dan waktu yang tersedia.') }}
+                                {{ __('Silakan isi form di bawah ini untuk mencatat hasil pemeriksaan pasien dan memilih obat yang diberikan.') }}
                             </p>
                         </header>
 
@@ -33,21 +33,20 @@
                             <div class="mb-3 form-group">
                                 <label for="tgl_periksa">Tanggal
                                     Periksa</label>
-                                <input type="datetime-local" class="rounded form-control"
-                                    id="tgl_periksa" name="tgl_periksa" required>
+                                <input type="datetime-local" class="rounded form-control" id="tgl_periksa"
+                                    name="tgl_periksa" required>
                             </div>
 
                             <div class="mb-3 form-group">
                                 <label for="catatan">Catatan</label>
-                                <textarea class="rounded form-control" id="catatan" name="catatan" rows="3"
-                                    placeholder="Catatan pemeriksaan"></textarea>
+                                <textarea class="rounded form-control" id="catatan" name="catatan" rows="3" placeholder="Catatan pemeriksaan"></textarea>
                             </div>
 
                             <div class="mb-3 form-group">
                                 <label for="obat">Pilih
                                     Obat</label>
-                                <select class="rounded form-control" id="obat" name="obat[]"
-                                    multiple onchange="hitungBiaya()">
+                                <select class="rounded form-control" id="obat" name="obat[]" multiple
+                                    onchange="hitungBiaya()">
                                     @foreach ($obats as $obat)
                                         <option value="{{ $obat->id }}" data-harga="{{ $obat->harga }}">
                                             {{ $obat->nama_obat }} -
@@ -65,9 +64,8 @@
                                 <label for="biaya_periksa">Biaya
                                     Pemeriksaan
                                     (Rp)</label>
-                                <input type="text" class="rounded form-control"
-                                    id="biaya_periksa" name="biaya_periksa" value="150000"
-                                    readonly>
+                                <input type="text" class="rounded form-control" id="biaya_periksa"
+                                    name="biaya_periksa" value="150000" readonly>
                             </div>
 
                             <a type="button" href="{{ route('dokter.memeriksa.index') }}" class="btn btn-secondary">

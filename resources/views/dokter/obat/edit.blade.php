@@ -16,33 +16,31 @@
                             </h2>
 
                             <p class="mt-1 text-sm text-gray-600">
-                                {{ __('Silakan isi form di bawah ini untuk menambahkan jadwal pemeriksaan dokter sesuai dengan hari dan waktu yang tersedia.') }}
+                                {{ __('Silakan perbarui informasi obat sesuai dengan nama, kemasan, dan harga terbaru.') }}
                             </p>
+
                         </header>
 
-                        <form class="mt-6" action="{{ route('dokter.obat.update', $obat->id) }}"
-                            method="POST">
+                        <form class="mt-6" action="{{ route('dokter.obat.update', $obat->id) }}" method="POST">
                             @csrf
                             @method('PATCH')
 
                             <div class="mb-3 form-group">
                                 <label for="editNamaObatInput">Nama</label>
-                                <input type="text" class="rounded form-control"
-                                    id="editNamaObatInput" value="{{ $obat->nama_obat }}"
-                                    name="nama_obat">
+                                <input type="text" class="rounded form-control" id="editNamaObatInput"
+                                    value="{{ $obat->nama_obat }}" name="nama_obat">
                             </div>
 
                             <div class="mb-3 form-group">
                                 <label for="editKemasanInput">Kemasan</label>
-                                <input type="text" class="rounded form-control"
-                                    id="editKemasanInput" value="{{ $obat->kemasan }}"
-                                    name="kemasan">
+                                <input type="text" class="rounded form-control" id="editKemasanInput"
+                                    value="{{ $obat->kemasan }}" name="kemasan">
                             </div>
 
                             <div class="mb-3 form-group">
                                 <label for="editHargaInput">Harga</label>
-                                <input type="text" class="rounded form-control"
-                                    id="editHargaInput" value="{{ $obat->harga }}" name="harga">
+                                <input type="text" class="rounded form-control" id="editHargaInput"
+                                    value="{{ $obat->harga }}" name="harga">
                             </div>
 
                             <a type="button" href="{{ route('dokter.obat.index') }}" class="btn btn-secondary">
