@@ -19,6 +19,10 @@ class MemeriksaController extends Controller
             ->where('status', true)
             ->first();
 
+        if (!$jadwalPeriksa) {
+            return redirect()->back()->withErrors(['Tidak ada jadwal periksa aktif untuk dokter ini.']);
+        }
+
         $janjiPeriksas = JanjiPeriksa::where('id_jadwal_periksa', $jadwalPeriksa->id)
             ->with(['pasien', 'jadwalPeriksa'])
             ->get();
