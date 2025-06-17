@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Dokter;
 
 use App\Http\Controllers\Controller;
-use App\Models\Obat;
+use App\Models\Obat; // Pastikan ini mengarah ke model Obat Anda
 use Illuminate\Http\Request;
 
 class ObatController extends Controller
 {
     public function index()
     {
+        // Secara default, SoftDeletes hanya akan mengambil data yang deleted_at-nya NULL
         $obats = Obat::all();
 
         return view('dokter.obat.index')->with([
@@ -23,7 +24,13 @@ class ObatController extends Controller
 
     public function edit($id)
     {
+        // find() juga akan mengabaikan data yang soft deleted secara default
         $obat = Obat::find($id);
+
+        // Tambahkan pengecekan jika obat tidak ditemukan (termasuk yang soft deleted)
+        if (!$obat) {
+            return redirect()->route('dokter.obat.index')->with('error', 'Obat tidak ditemukan.');
+        }
 
         return view('dokter.obat.edit')->with([
             'obat' => $obat,
@@ -55,6 +62,12 @@ class ObatController extends Controller
         ]);
 
         $obat = Obat::find($id);
+
+        // Tambahkan pengecekan jika obat tidak ditemukan
+        if (!$obat) {
+            return redirect()->route('dokter.obat.index')->with('error', 'Obat tidak ditemukan.');
+        }
+
         $obat->update([
             'nama_obat' => $request->nama_obat,
             'kemasan' => $request->kemasan,
@@ -67,8 +80,14 @@ class ObatController extends Controller
     public function destroy($id)
     {
         $obat = Obat::find($id);
-        $obat->delete();
 
-        return redirect()->route('dokter.obat.index');
+        // Tambahkan pengecekan jika obat tidak ditemukan
+        if (!$obat) {
+            return redirect()->route('dokter.obat.index')->with('error', 'Obat tidak ditemukan.');
+        }
+
+        $obat->delete(); // Ini akan melakukan soft delete
+
+        return redirect()->route('dokter.obat.index')->with('status', 'Obat berhasil dihapus (soft delete).');
     }
 }
