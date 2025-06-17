@@ -24,14 +24,6 @@ Route::middleware(['auth', 'role:dokter'])->prefix('dokter')->group(function () 
         Route::patch('/{id}', [JadwalPeriksaController::class, 'update'])->name('dokter.jadwal-periksa.update');
     });
 
-    Route::prefix('memeriksa')->group(function(){
-        Route::get('/', [MemeriksaController::class, 'index'])->name('dokter.memeriksa.index');
-        Route::post('/{id}', [MemeriksaController::class, 'store'])->name('dokter.memeriksa.store');
-        Route::get('/{id}/periksa', [MemeriksaController::class, 'periksa'])->name('dokter.memeriksa.periksa');
-        Route::get('/{id}/edit', [MemeriksaController::class, 'edit'])->name('dokter.memeriksa.edit');
-        Route::patch('/{id}', [MemeriksaController::class, 'update'])->name('dokter.memeriksa.update');
-    });
-
     Route::prefix('obat')->group(function(){
         Route::get('/', [ObatController::class, 'index'])->name('dokter.obat.index');
         Route::get('/create', [ObatController::class, 'create'])->name('dokter.obat.create');
